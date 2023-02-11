@@ -1,0 +1,12 @@
+{
+	"testMate.cpp.test.advancedExecutables": [
+        {
+			"pattern": "{build,Build,BUILD,out,Out,OUT}/**/*{test,Test,TEST}*",
+            "runTask": {
+                "before": [
+                    "Build tests",
+                ],
+            },
+        },
+    ],
+}
