@@ -6,7 +6,7 @@ add_subdirectory(googletest)
 
 include_directories(googletest/include) # this is so we can #include <gtest/gtest.h>
 
-set(SOURCES source/FloatHelper.cpp source/Tuple.cpp tests.cpp)
+set(SOURCES source/FloatHelper.cpp source/Tuple.cpp tests/tests.cpp tests/TupleTests.cpp tests/ProjectileTests.cpp)
 set(HEADERS source/FloatHelper.h source/Tuple.h)
 
 add_executable(raytracertests ${SOURCES} ${HEADERS}) # add this executable

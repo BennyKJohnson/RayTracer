@@ -377,9 +377,3 @@ TEST(Tuple, TwoVectorCrossProductBCrossA)
     delete result;
     delete expectedResult;
 }
-
-int main(int argc, char* argv[])
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
-}
