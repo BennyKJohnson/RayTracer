@@ -3,47 +3,50 @@
 #ifndef _TUPLE_H
 #define _TUPLE_H
 
-typedef struct Tuple {
-    float x;
-    float y;
-    float z;
-    float w;
-} Tuple;
+bool areEqual(float a, float b);
 
-Tuple* createPoint(float x, float y, float z)
+class Tuple
 {
-    Tuple *newPoint = (Tuple*)malloc(sizeof(Tuple));
-    newPoint->x = x;
-    newPoint->y = y;
-    newPoint->z = z;
-    newPoint->w = 1.0;
+public:
+	Tuple(float x, float y, float z, float w) : x(x), y(y), z(z), w(w) {}
 
-    return newPoint;
-}
+	bool operator==(const Tuple &other) const;
 
-Tuple* createVector(float x, float y, float z)
-{
-    Tuple *newVector = (Tuple*)malloc(sizeof(Tuple));
-    newVector->x = x;
-    newVector->y = y;
-    newVector->z = z;
-    newVector->w = 0;
+	Tuple *add(Tuple *tupleB);
 
-    return newVector;
-}
+	Tuple *subtract(Tuple *tupleB);
 
-bool areEqual(float a, float b) {
-    return fabs(a -b) < 0.0001;
-}
+	Tuple *negate();
 
-bool isPoint(Tuple* tuple)
-{
-    return areEqual(tuple->w, 1.0);
-}
+	Tuple *normalize();
 
-bool isVector(Tuple *tuple)
-{
-    return areEqual(tuple->w, 0.0);
-}
+	float magnitude();
+
+	float dot(Tuple *other);
+
+	Tuple *cross(Tuple *other);
+
+	Tuple *multiply(float scalar);
+
+	Tuple *divide(float scalar);
+
+	bool isPoint();
+
+	bool isVector();
+
+	float x;
+
+	float y;
+
+	float z;
+
+	float w;
+};
+
+Tuple *createPoint(float x, float y, float z);
+
+Tuple *createVector(float x, float y, float z);
+
+bool tuplesAreEqual(Tuple *tupleA, Tuple *tupleB);
 
 #endif
