@@ -3,6 +3,7 @@
 #include "FloatHelper.h"
 #include <math.h>
 #include <stdexcept>
+#include <iostream>
 
 float* Matrix::operator[](int rowIndex) const
 {
@@ -217,4 +218,20 @@ Matrix::~Matrix() {
 	for (int r = 0; r < rows; r++) {
 		delete values[r];
 	}
+}
+
+std::ostream& operator<< (std::ostream& stream, const Matrix& matrix) {
+	stream << "Matrix(" << matrix.rows << ", " << matrix.columns << ")" << std::endl;
+	for (int r = 0; r < matrix.rows; r++) {
+		stream << "[";
+		for (int c = 0; c < matrix.columns; c++) {
+			stream << matrix.values[r][c];
+			if (c < matrix.columns - 1) {
+				stream << ", ";
+			}
+		}
+		stream << "]" << std::endl;
+	}
+
+	return stream;
 }

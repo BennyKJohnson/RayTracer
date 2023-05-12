@@ -1,4 +1,5 @@
 #include "Tuple.h"
+#include <iostream>
 
 #ifndef _MATRIX_H
 #define _MATRIX_H
@@ -44,10 +45,13 @@ public:
 
 	Matrix *inverse();
 
+	friend std::ostream& operator<< (std::ostream& stream, const Matrix& matrix);
+
 private:
 	float **values;
 	int rows;
 	int columns;
 };
+
 
 #endif

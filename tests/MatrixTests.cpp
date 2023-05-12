@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Matrix.h"
 #include "Tuple.h"
+#include <iostream>
 
 TEST(Matrix, Create2x2Matrix)
 {
@@ -495,4 +496,14 @@ TEST(Matrix, CalculateTheInverseOfAMatrix4x4Number3)
     EXPECT_EQ(*inverse, expectedMatrix);
 
     delete inverse;
+}
+
+TEST(Matrix, InverseIdentityMatrixEqualsIdentityMatrix)
+{
+    Matrix *identityMatrix = Matrix::identity(4, 4);
+    Matrix *identityMatrixInverse = identityMatrix->inverse();
+
+    EXPECT_EQ(*identityMatrixInverse, *identityMatrix);
+    delete identityMatrixInverse;
+    delete identityMatrix;
 }

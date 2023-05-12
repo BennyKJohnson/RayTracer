@@ -74,6 +74,15 @@
         "utility": "cpp",
         "variant": "cpp",
         "fstream": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__hash_table": "cpp",
+        "cmath": "cpp",
+        "complex": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "stack": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp"
     },
 }
