@@ -47,6 +47,30 @@ public:
 
 	friend std::ostream& operator<< (std::ostream& stream, const Matrix& matrix);
 
+	Matrix* rotateX(float radians);
+
+	Matrix* rotateY(float radians);
+
+	Matrix* rotateZ(float radians);
+
+	Matrix* translate(float x, float y, float z);
+
+	Matrix* scale(float x, float y, float z);
+
+	Matrix* shear(float xy, float xx, float yx, float yz, float zx, float zy);
+
+	static Matrix* createTranslation(float x, float y, float z);
+
+	static Matrix* createScaling(float x, float y, float z);
+
+	static Matrix* createRotationX(float radians);
+
+	static Matrix* createRotationY(float radians);
+
+	static Matrix* createRotationZ(float radians);
+
+	static Matrix* createShearing(float xy, float xx, float yx, float yz, float zx, float zy);
+
 private:
 	float **values;
 	int rows;

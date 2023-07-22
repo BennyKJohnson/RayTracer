@@ -235,3 +235,110 @@ std::ostream& operator<< (std::ostream& stream, const Matrix& matrix) {
 
 	return stream;
 }
+
+Matrix* Matrix::createTranslation(float x, float y, float z) {
+	float matrixValues[4][4] = {
+        {1, 0, 0, x},
+        {0, 1, 0, y},
+        {0, 0, 1, z},
+        {0, 0, 0, 1}};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::createScaling(float x, float y, float z) {
+	float matrixValues[4][4] = {
+		{x, 0, 0, 0},
+		{0, y, 0, 0},
+		{0, 0, z, 0},
+		{0, 0, 0, 1}
+	};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::createRotationX(float radians) {
+	float matrixValues[4][4] = {
+		{1, 0, 0, 0},
+		{0, cosf(radians), -sinf(radians), 0},
+		{0, sinf(radians), cosf(radians), 0},
+		{0, 0, 0 ,1}
+	};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::createRotationY(float radians) {
+	float matrixValues[4][4] = {
+		{cos(radians), 0, sin(radians), 0},
+		{0, 1, 0, 0},
+		{-sin(radians), 0, cos(radians), 0},
+		{0, 0, 0, 1}
+	};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::createRotationZ(float radians) {
+	float matrixValues[4][4] = {
+		{cos(radians), -sin(radians), 0, 0},
+		{sin(radians), cos(radians), 0, 0},
+		{0, 0, 1, 0},
+		{0, 0, 0, 1}
+	};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::createShearing(float xy, float xx, float yx, float yz, float zx, float zy) {
+	float matrixValues[4][4] = {
+		{1, xy, xx, 0},
+		{yx, 1, yz, 0},
+		{zx, zy, 1, 0},
+		{0, 0, 0, 1}
+	};
+
+	return new Matrix(matrixValues);
+}
+
+Matrix* Matrix::translate(float x, float y, float z) {
+	Matrix *translation = createTranslation(x, y, z);
+	Matrix *result = translation->multiply(*this);
+	delete translation;
+	return result;
+}
+
+Matrix* Matrix::scale(float x, float y, float z) {
+	Matrix *scaleMatrix = createScaling(x, y, z);
+	Matrix *result = scaleMatrix->multiply(*this);
+	delete scaleMatrix;
+	return result;
+}
+
+Matrix* Matrix::rotateX(float radians) {
+	Matrix *rotation = createRotationX(radians);
+	Matrix *result = rotation->multiply(*this);
+	delete rotation;
+	return result;
+}
+
+Matrix* Matrix::rotateY(float radians) {
+	Matrix *rotation = createRotationY(radians);
+	Matrix *result = rotation->multiply(*this);
+	delete rotation;
+	return result;
+}
+
+Matrix* Matrix::rotateZ(float radians) {
+	Matrix *rotation = createRotationZ(radians);
+	Matrix *result = rotation->multiply(*this);
+	delete rotation;
+	return result;
+}
+
+Matrix *Matrix::shear(float xy, float xx, float yx, float yz, float zx, float zy) {
+	Matrix *shear = createShearing(xy, xx, yx, yz, zx, zy);
+	Matrix *result = shear->multiply(*this);
+	delete shear;
+	return result;
+}
